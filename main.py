@@ -44,14 +44,17 @@ def make_embed(guild_id):
     return embed
 
 
-@bot.event
+
 async def setup_hook():
     servidor_pruebas = discord.Object(id=1218989134366900325)
 
     bot.tree.copy_global_to(guild=servidor_pruebas)
     comandos = await bot.tree.sync(guild=servidor_pruebas)
 
-    print(f"✅ {len(comandos)} comandos sincronizados en el servidor de pruebas")
+    print(f"✅ {len(comandos)} comandos sincronizados en el servidor de pruebas", flush=True)
+
+bot.setup_hook = setup_hook
+
 
 @bot.tree.command(name='ping', description='Comprueba si el bot está funcionando')
 async def ping(interaction: discord.Interaction):

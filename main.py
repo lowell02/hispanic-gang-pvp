@@ -51,7 +51,9 @@ async def on_ready():
 
     servidor_pruebas = discord.Object(id=1218989134366900325)
 
-    bot.tree.copy_global_to(guild=servidor_pruebas)
+   bot.tree.clear_commands(guild=None)
+await bot.tree.sync()
+print("✅ Comandos globales duplicados eliminados", flush=True)
     comandos = await bot.tree.sync(guild=servidor_pruebas)
 
     print(f"✅ {len(comandos)} comandos sincronizados en el servidor de pruebas", flush=True)

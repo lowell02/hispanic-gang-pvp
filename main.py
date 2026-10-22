@@ -45,7 +45,10 @@ def make_embed(guild_id):
 
 
 
-async def setup_hook():
+@bot.event
+async def on_ready():
+    print(f"⚔️ HISPANIC GANG conectado como {bot.user}", flush=True)
+
     servidor_pruebas = discord.Object(id=1218989134366900325)
 
     bot.tree.copy_global_to(guild=servidor_pruebas)
@@ -53,7 +56,6 @@ async def setup_hook():
 
     print(f"✅ {len(comandos)} comandos sincronizados en el servidor de pruebas", flush=True)
 
-bot.setup_hook = setup_hook
 
 
 @bot.tree.command(name='ping', description='Comprueba si el bot está funcionando')

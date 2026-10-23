@@ -45,18 +45,25 @@ def make_embed(guild_id):
 
 
 
+
+
 @bot.event
 async def on_ready():
     print(f"⚔️ HISPANIC GANG conectado como {bot.user}", flush=True)
 
     servidor_pruebas = discord.Object(id=1218989134366900325)
 
-   bot.tree.clear_commands(guild=None)
-await bot.tree.sync()
-print("✅ Comandos globales duplicados eliminados", flush=True)
+    bot.tree.copy_global_to(guild=servidor_pruebas)
     comandos = await bot.tree.sync(guild=servidor_pruebas)
 
     print(f"✅ {len(comandos)} comandos sincronizados en el servidor de pruebas", flush=True)
+
+    bot.tree.clear_commands(guild=None)
+    await bot.tree.sync()
+
+    print("✅ Comandos globales duplicados eliminados", flush=True)
+
+
 
 
 
